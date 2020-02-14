@@ -4,7 +4,9 @@ class PublicController < ApplicationController
     if Rails.env.production?
       @country = request.location.country
       @city = request.location.city
-      @currency = request.currency
+      country_code = request.location.country_code
+
+      @currency = country_code.upcase == "AU" ? "AUD" : "USD"
     end
   end
 
